@@ -8,6 +8,11 @@ import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 
 export default defineConfig({
-	output: 'server', // Zmieniamy na tryb SSR
-	adapter: node({ mode: 'standalone' }), // Node.js jako serwer
+	output: 'server', // Tryb SSR
+	adapter: node({
+		mode: 'standalone',
+	}),
+	server: {
+		port: process.env.PORT || 3000, // Używaj dynamicznie przypisanego portu przez Railway lub 3000 lokalnie
+	},
 });
