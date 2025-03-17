@@ -1,0 +1,37 @@
+$primary-color: #3498db;
+$text-color: #333;
+$button-color: #e74c3c;
+$mobile-breakpoint: 768px;
+
+.article-detail {
+	padding: 2rem;
+
+	h1 {
+		font-size: 2.5rem;
+		color: $text-color;
+	}
+
+	p {
+		font-size: 1.2rem;
+		color: darken($text-color, 20%);
+		margin-top: 1rem;
+	}
+
+	.article-content {
+		margin-top: 2rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		color: darken($text-color, 10%);
+	}
+}
+
+// 📌 Responsywność
+@media (max-width: $mobile-breakpoint) {
+	.articles-list {
+		padding: 1rem;
+	}
+
+	.article-detail {
+		padding: 1rem;
+	}
+}

@@ -1,0 +1,93 @@
+---
+import '../styles/main.scss';
+
+---
+
+
+<header class="navbar">
+	<div class="navbar__container">
+		<a href="#" class="navbar__logo">
+			<i class="fa-solid fa-tree"></i> BLOGG</a
+		>
+		<button class="navbar__toggle" aria-label="Toggle navigation">
+			<span class="navbar__icon"></span>
+			<span class="navbar__icon"></span>
+			<span class="navbar__icon"></span>
+		</button>
+		<nav class="navbar__menu">
+			<ul class="navbar__list">
+				<li class="navbar__item">
+					<a href="index.html#home" class="navbar__link">Home</a>
+				</li>
+				<li class="navbar__item">
+					<a href="index.html#blog" class="navbar__link">Blog</a>
+				</li>
+				<li class="navbar__item">
+					<a href="index.html#services" class="navbar__link">O nas</a>
+				</li>
+				<li class="navbar__item">
+					<a href="index.html#footer" class="navbar__link">Kontakt</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<script>
+ 
+ document.addEventListener('DOMContentLoaded', function () {
+	const toggleButton = document.querySelector('.navbar__toggle');
+	const menu = document.querySelector('.navbar__menu');
+	const body = document.body;
+	const navbar = document.querySelector('.navbar');
+	const navLinks = document.querySelectorAll('.navbar__link'); // Pobieramy wszystkie linki w menu
+	const sections = document.querySelectorAll('section');
+
+	if (!toggleButton || !menu || !navbar) {
+		console.warn('Nie znaleziono elementów nawigacji.');
+		return;
+	}
+
+	const handleNav = () => {
+		menu.classList.toggle('navbar--active__menu'); // Pokazuje/ukrywa menu
+		body.classList.toggle('navbar--active'); // Zablokowanie przewijania strony
+	};
+
+	toggleButton.addEventListener('click', handleNav);
+
+	// Zamykanie menu po kliknięciu w link nawigacyjny
+	navLinks.forEach((link) => {
+		link.addEventListener('click', () => {
+			menu.classList.remove('navbar--active__menu');
+			body.classList.remove('navbar--active');
+		});
+	});
+
+	// Obsługa sticky navbar + aktywne linki
+	window.addEventListener('scroll', function () {
+		let scrollY = window.pageYOffset;
+
+		if (scrollY > 100) {
+			navbar.classList.add('navbar--scrolled');
+		} else {
+			navbar.classList.remove('navbar--scrolled');
+		}
+
+		sections.forEach((section) => {
+			let sectionHeight = section.offsetHeight;
+			let sectionTop = section.offsetTop - 50;
+			let sectionId = section.getAttribute('id');
+
+			if (sectionId && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+				navLinks.forEach((link) => {
+					link.classList.remove('active');
+					if (link.getAttribute('href')?.includes(sectionId)) {
+						link.classList.add('active');
+					}
+				});
+			}
+		});
+	});
+});
+
+  </script>

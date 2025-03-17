@@ -1,0 +1,28 @@
+---
+import { fetchArticles } from '../../utils/fetchArticles';
+import { fetchArticleById } from '../../utils/fetchArticleById';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const articles = await fetchArticles();
+  console.log("Generated paths:", articles.map((a: { id: number }) => ({ params: { id: a.id.toString() } }))); // Debug
+
+  return articles.map((article: { id: number }) => ({
+    params: { id: article.id.toString() }, // ID jako string!
+  }));
+}
+
+const { id } = Astro.params;
+
+const article = await fetchArticleById(id);
+---
+<Layout>
+<main>
+  <article class="article-detail">
+    <h1>{article.title}</h1>
+    <p>{article.description || 'No description available.'}</p>
+    <div class="article-content" set:html={article.body_html} />
+  </article>
+</main>
+
+</Layout>

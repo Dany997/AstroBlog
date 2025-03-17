@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import { fetchArticles } from '../utils/fetchArticles';
+
+const articles = await fetchArticles();
+---
+
+<Layout>
+  <Header />
+  <main>
+    <section class="articles-list">
+      <h2>Latest Blog Posts</h2>
+      <ul>
+        {articles.map((article: { id: string, title: string, description?: string }) => (
+          <li>
+            <a href={`/post/${article.id}`} class="article-link">
+              <h3>{article.title}</h3>
+              <p>{article.description || 'No description available.'}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</Layout>

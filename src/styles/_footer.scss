@@ -1,0 +1,74 @@
+$primary-color: #3498db;
+$text-color: #333;
+$bg-color: #f8f8f8;
+$mobile-breakpoint: 768px;
+
+.footer {
+	background: $bg-color;
+	padding: 2rem;
+	text-align: center;
+	margin-top: 3rem;
+
+	&__content {
+		margin-bottom: 1rem;
+	}
+
+	&__title {
+		font-size: 1.8rem;
+		font-weight: bold;
+		color: $text-color;
+	}
+
+	&__socials {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 0.5rem;
+
+		li {
+			display: inline-block;
+
+			a {
+				text-decoration: none;
+				font-size: 1.5rem;
+				color: $primary-color;
+				transition: color 0.3s;
+
+				&:hover {
+					color: darken($primary-color, 15%);
+				}
+			}
+		}
+	}
+
+	&__copyright {
+		font-size: 0.9rem;
+		color: darken($text-color, 30%);
+		margin-top: 1rem;
+	}
+}
+
+// 📌 Responsywność
+@media (max-width: $mobile-breakpoint) {
+	.footer {
+		padding: 1.5rem;
+
+		&__title {
+			font-size: 1.5rem;
+		}
+
+		&__socials {
+			gap: 0.8rem;
+
+			a {
+				font-size: 1.3rem;
+			}
+		}
+
+		&__copyright {
+			font-size: 0.8rem;
+		}
+	}
+}

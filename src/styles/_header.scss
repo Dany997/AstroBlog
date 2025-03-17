@@ -1,0 +1,83 @@
+$primary-color: #3498db;
+$text-color: #333;
+$button-color: #e74c3c;
+$mobile-breakpoint: 768px;
+$tablet-breakpoint: 1024px;
+
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 2rem;
+	background-color: #fff;
+
+	&__image {
+		width: 100%;
+		max-width: 1200px;
+
+		img {
+			width: 100%;
+			height: auto;
+			border-radius: 10px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+		}
+	}
+
+	&__content {
+		margin-top: 2rem;
+		max-width: 800px;
+
+		.header__title {
+			font-size: 2.5rem;
+			color: $text-color;
+			margin-bottom: 0.5rem;
+		}
+
+		.header__subtitle {
+			font-size: 1.2rem;
+			color: darken($text-color, 20%);
+			margin-bottom: 1rem;
+		}
+
+		.header__button {
+			display: inline-block;
+			padding: 0.75rem 1.5rem;
+			background-color: $button-color;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 5px;
+			font-weight: bold;
+			transition: background 0.3s;
+
+			&:hover {
+				background-color: darken($button-color, 10%);
+			}
+		}
+	}
+}
+
+// 📌 Responsywność
+@media (max-width: $tablet-breakpoint) {
+	.header {
+		padding: 3rem 1.5rem;
+	}
+}
+
+@media (max-width: $mobile-breakpoint) {
+	.header {
+		padding: 2rem 1rem;
+
+		.header__title {
+			font-size: 2rem;
+		}
+
+		.header__subtitle {
+			font-size: 1rem;
+		}
+
+		.header__button {
+			padding: 0.6rem 1.2rem;
+		}
+	}
+}
