@@ -13,6 +13,6 @@ export default defineConfig({
 		mode: 'standalone',
 	}),
 	server: {
-		port: process.env.PORT || 3000, // Używaj dynamicznie przypisanego portu przez Railway lub 3000 lokalnie
+		port: process.env.PORT || 8001, // Używaj dynamicznie przypisanego portu przez Railway lub 3000 lokalnie
 	},
 });
